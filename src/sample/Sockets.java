@@ -5,37 +5,49 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Sockets {
-    public static int newSocket (String Ip, int port,String mensaje)  {
+    public static void newSocket (String Ip, int port,String mensaje)  throws Exception {
         try {
-            Socket soket=new Socket(Ip,port);
+            Socket soket = new Socket(Ip, port);
             DataOutputStream salida = new DataOutputStream(soket.getOutputStream());
             salida.writeUTF(mensaje);
             salida.close();
-            return port;
 
-        } catch (IOException e) {
-            newSocket(Ip,port+1,mensaje);
         }
-        return 0;
+        catch (UnknownHostException e){
+                System.out.println("jua2");
+                System.out.println(e.getMessage());
+
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+
+        }
+
     }
-    public static void newServer(int port){
-        String mensaje=null;
+    public static String newServer(int port){
+        String mensaje;
         try {
             ServerSocket server = new ServerSocket(port);
-            while (mensaje==null) {
+            Socket servert = server.accept();
+            DataInputStream entrada = new DataInputStream(servert.getInputStream());
+            mensaje = entrada.readUTF();
 
-                Socket servert = server.accept();
-                DataInputStream entrada = new DataInputStream(servert.getInputStream());
-                mensaje = entrada.readUTF();
+            entrada.close();
+            return mensaje;
 
-                entrada.close();
 
-            }
+        }
+        catch (UnknownHostException e) {
+            System.out.println(e.getMessage());
+            return "null";
         }
         catch (IOException e) {
             e.printStackTrace();
+            System.out.println(e);
+            return "null";
         }
 
     }

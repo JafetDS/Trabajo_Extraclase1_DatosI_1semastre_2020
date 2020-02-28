@@ -28,7 +28,9 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        //Sockets.newSocket("192.168.100.27", 40000,"hello");
+
         launch(args);
     }
 }
