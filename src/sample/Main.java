@@ -11,6 +11,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.stream.IntStream;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 public class Main extends Application {
 
     @Override
@@ -28,9 +32,11 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         //Sockets.newSocket("192.168.100.27", 40000,"hello");
-
         launch(args);
+
+
+
     }
 }

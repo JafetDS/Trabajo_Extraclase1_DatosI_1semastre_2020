@@ -7,8 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Sockets {
-    public static void newSocket (String Ip, int port,String mensaje)  throws Exception {
+public class Sockets  {
+    public static void newSocket(String Ip, int port,String mensaje)  throws Exception{newSocket2(Ip,  port,mensaje); }
+    private static void newSocket2(String Ip, int port,String mensaje)  throws Exception {
         try {
             Socket soket = new Socket(Ip, port);
             DataOutputStream salida = new DataOutputStream(soket.getOutputStream());
@@ -27,28 +28,29 @@ public class Sockets {
         }
 
     }
-    public static String newServer(int port){
-        String mensaje;
-        try {
-            ServerSocket server = new ServerSocket(port);
-            Socket servert = server.accept();
-            DataInputStream entrada = new DataInputStream(servert.getInputStream());
-            mensaje = entrada.readUTF();
+  //_______________________________________________________________________________________________________________________________
 
+    public static String newServerlistening(ServerSocket server) throws Exception{
+       return newServerlistening2(server);
+    }
+    public static String newServerlistening2(ServerSocket server) throws Exception{
+
+            System.out.println("Linting");
+            DataInputStream entrada = new DataInputStream(server.accept().getInputStream());
+            String mensaje=entrada.readUTF();
             entrada.close();
             return mensaje;
 
 
-        }
-        catch (UnknownHostException e) {
-            System.out.println(e.getMessage());
-            return "null";
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e);
-            return "null";
-        }
+
 
     }
+
+
+
+    //______________________________________________________________________________________________________________________________________
+
+
+
+
 }
