@@ -7,6 +7,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Clase para iniciar el socket client y el socket Server
+ *
+ * SE PUEDE UTILIZAR EN CUALQUIER PROYECTO : MODULARIDAD
+ */
+
 public class Sockets  {
     public static void newSocket(String Ip, int port,String mensaje)  throws Exception{newSocket2(Ip,  port,mensaje); }
     private static void newSocket2(String Ip, int port,String mensaje)  throws Exception {
@@ -34,16 +40,11 @@ public class Sockets  {
        return newServerlistening2(server);
     }
     public static String newServerlistening2(ServerSocket server) throws Exception{
-
             System.out.println("Linting");
             DataInputStream entrada = new DataInputStream(server.accept().getInputStream());
             String mensaje=entrada.readUTF();
             entrada.close();
             return mensaje;
-
-
-
-
     }
 
 

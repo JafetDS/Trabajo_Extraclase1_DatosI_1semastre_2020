@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Main extends Application {
+public class Main extends Application {//implements Runnable{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -37,6 +37,11 @@ public class Main extends Application {
         launch(args);
 
 
+
+    }
+
+
+    public void run() {
 
     }
 }
